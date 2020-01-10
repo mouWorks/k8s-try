@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: m1ga-deployment-example
+spec:
+  selector:
+    matchLabels:
+      app: m1ga-deployment
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: m1ga-deployment
+    spec:
+      containers:
+        - name: m1ga-php
+          image: mouwang/m1ga
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 9090
